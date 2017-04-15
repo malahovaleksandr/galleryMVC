@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+    <h1>{{ title }}</h1>
+    <form action="{{ action }}" method="POST"  >
+        <h3><b>{{ title }}</b><br></h3>
+
+        <input type="text" name="name" placeholder="Имя" ><Br>
+        <input type="text" name="mail" placeholder="почта"><Br>
+        <textarea name="description" placeholder="Какой у вас вопрос"> </textarea><Br>
+        <input type="submit" name="отправить">
+
+    </form><br>
+
+{% endblock %}

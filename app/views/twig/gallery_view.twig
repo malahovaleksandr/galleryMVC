@@ -1,0 +1,16 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    {{foreach(sameLogin as value=>key)}}
+
+
+    Фото №\"" .$r." <img src=".$key['photo']." width='200px' height='auto'>
+    <input type='hidden' name=id value=".$key['id'].">
+    <button type=submit value=".$key['id'].">удалить</button>
+    </form>
+    <br>";
+    ++$r;
+
+
+    <br><a href='index.php'>на главную</a>";
+{% endblock %}

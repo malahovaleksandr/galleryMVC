@@ -1,0 +1,19 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+    {#<h1>{{ title }}</h1>#}
+    {#<p>{{ content }}</p>#}
+    <h1>{{ title }}</h1>
+    <form action="{{ action }}" method="POST" enctype="multipart/form-data" >
+        <h3><b>здесь можно дополнить данные о себе</b><br></h3>
+
+        <input type="text" name="name" placeholder="Имя" ><Br>
+        <input type="number" name="age" placeholder="возраст"><Br>
+
+        <textarea name="description" placeholder="описание"> </textarea><Br>
+        {{ _SESSION['notFile']  }}<br>
+        <input type="file" name="image" placeholder="картинка"><Br>
+        <input type="submit" name="отправить">
+    </form><br>
+    <a href="../gallery">перейти в галерею</a>
+{% endblock %}

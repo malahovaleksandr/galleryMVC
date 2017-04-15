@@ -1,0 +1,15 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+{#<h1>{{ title }}</h1>#}
+{#<p>{{ content }}</p>#}
+    <h1>{{ titleFrom }}</h1>
+
+    <form action="{{ action }}" method="POST" >
+        <p>{{ error }}</p>
+        <input class="inputForm" type="text" name="login" placeholder="Логин" ><Br>
+        <input class="inputForm" type="password" name="password" placeholder="Пароль"><Br>
+
+        <input type="submit" name="отправить">
+    </form><br><br>
+{% endblock %}
