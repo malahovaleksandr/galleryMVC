@@ -12,6 +12,7 @@ class controller_autorization extends Controller {
                 ));
         } else {
             if ($_POST['login'] && $_POST['password']) {
+                $_SESSION['err'] = '';
                 $registr = new Model_autorization();
                 $test    = $registr::where('login', $_POST['login'])->where('password', $_POST['password'])->first();
                 if (!$test) {

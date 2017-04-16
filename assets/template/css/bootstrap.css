@@ -4170,7 +4170,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   min-height: 50px;
   margin-bottom: 20px;
-  border: 1px solid transparent;
+  /*border: 1px solid transparent;*/
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4607,11 +4607,14 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #fff;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #fff;
+  text-shadow: 1px 1px 3px #000;
+  text-decoration: underline;
+  transition: 0.5s;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
@@ -4963,7 +4966,7 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eee;
+  background-color: #18e9f4;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -6758,3 +6761,11 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.inputForm{
+  margin-bottom: 10px;
+  border-radius: 8px;
+  padding: 3px;
+}
+body{
+  background: #18e9f4;
+}

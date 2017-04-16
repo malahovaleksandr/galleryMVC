@@ -5,7 +5,7 @@ class Controller_Main extends Controller
 {
     public function action_index()
     {
-       
+
         if (empty($_POST)) {
             $this->view->generate('base_view.twig',
                 array(
@@ -22,6 +22,7 @@ class Controller_Main extends Controller
                     $_SESSION['err'] = 'такой логин уже есть';
                     header("Location: /");
                 } else {
+                    $_SESSION['err'] = '';
                     $registr->login    = $_POST['login'];
                     $registr->password = $_POST['password'];
                     $registr->save();
