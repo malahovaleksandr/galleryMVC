@@ -3,9 +3,10 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class controller_cabinet extends Controller {
     public $loadImage;
+    protected $incomeSrc;
     public function action_index()
     {
-        $this->chackAyth();
+        $this->checkAyth();
         if (empty($_POST['name']) || empty($_POST['age']) || empty($_POST['description']) ) { //проверка на заполнение полей
             $_SESSION['fileErr'] = ' заполните все поля';
             $this->view->generate('cabinet_view.twig',
@@ -24,23 +25,26 @@ class controller_cabinet extends Controller {
                        'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : ''
                    ));
            } else {
-               $loadPhoto=$_FILES['image'];
-               //$mime = Image::make($loadPhoto)->mime();
-                echo 'rfgnbyrf<br>';
-               var_dump($loadPhoto);
+
                $this->checkSaveImage();
-               
+               $saveData              = new Model_cabinet();
+               $saveData->age         =  $_POST['age'];
+               $saveData->nameUser    = $_POST['name'];
+               $saveData->description = $_POST['description'];
+               $saveData->photo       = $this->incomeSrc;
+               $saveData->save();
+
                $this->view->generate('cabinet_view.twig',
                    array(
                        'title'  => 'Кабинет',
                        'action' => '/cabinet',
-                       'error'  => ''
+                       'error'  => 'Данные сохранились'
                    ));
            }
         }
     }
 
-    private function chackAyth()
+    private function checkAyth()
     {
         if($_SESSION['auth'] !== "autorization"){
             header("Location: /");
@@ -84,15 +88,14 @@ class controller_cabinet extends Controller {
         $filename = uniqid('image_');// генерируем уникальное имя для файла,в скобках префикс  нового имени
         $saveDir='/loadPhoto';//в какую папку сохранять
         $file_dist=$_SERVER['DOCUMENT_ROOT'].$saveDir.'/'.$filename.$type;//это прописываем адрес и имя нового файла кудп будем сохранять
-        $imageResize=Image::make($file['tmp_name'])->resize(300, null);//делаем резаиз картинки с помощью библиотеки
+        $imageResize=Image::make($file['tmp_name'])->resize(300, null);//делаем ресаиз картинки с помощью библиотеки
 
         if(!move_uploaded_file($file['tmp_name'],$file_dist)) {//move_uploaded_file это функция перемещения загр файла, в скобках первое хначение это где временное хранение файла
             $_SESSION['notFile']='не удалось сохранить файл';
             header("Location: /cabinet");
         }
-        $incomeSrc=$saveDir.'/'.$filename.$type;
+        $this->incomeSrc=$saveDir.'/'.$filename.$type;
 
-        return $incomeSrc;
     }
 
 }
