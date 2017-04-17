@@ -3,7 +3,7 @@
 class controller_gallery extends Controller {
     public function action_index()
     {
-        $this->chackAyth();
+        $this->checkAyth();
             $this->view->generate('gallery_view.twig',
                 array(
                     'title'  => 'Галерея',
@@ -11,12 +11,7 @@ class controller_gallery extends Controller {
                 ));
     }
 
-    private function chackAyth()
-    {
-        if($_SESSION['auth'] !== "autorization"){
-            header("Location: /");
-        }
-    }
+
 
 
 }

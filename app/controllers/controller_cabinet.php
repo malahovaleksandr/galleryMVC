@@ -44,12 +44,7 @@ class controller_cabinet extends Controller {
         }
     }
 
-    private function checkAyth()
-    {
-        if($_SESSION['auth'] !== "autorization"){
-            header("Location: /");
-        }
-    }
+    
     
     private function checkSaveImage()
     {

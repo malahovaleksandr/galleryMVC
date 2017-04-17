@@ -15,6 +15,16 @@ class Controller {
     function action_index(){
 
     }
-   
 
+    public function checkAyth()
+    {
+        if($_SESSION['auth'] !== "autorization"){
+            header("Location: /");
+        }
+    }
+    public function incomingData($data)
+    {
+        $dataCheck=trim(htmlspecialchars($data));
+        return $dataCheck;
+    }
 }
