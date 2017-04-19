@@ -13,16 +13,23 @@ class controller_cabinet extends Controller {
                 array(
                     'title'  => 'Кабинет',
                     'action' => '/cabinet',
-                    'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : ''
+                    'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : '',
+                    'errorName'  => !empty($_SESSION['errorName']) ? $_SESSION['errorName'] : '',
+                    'errorAge'  => !empty($_SESSION['errAge']) ? $_SESSION['errAge'] : '',
+                    'errorDesc'  => !empty($_SESSION['errorDesc']) ? $_SESSION['errorDesc'] : ''
                 ));
         } else {
+            $this->checkInput();
            if (empty($_FILES['image'])) {
                $_SESSION['fileErr'] = ' загрузите картинку';
                $this->view->generate('cabinet_view.twig',
                    array(
                        'title'  => 'Кабинет',
                        'action' => '/cabinet',
-                       'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : ''
+                       'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : '',
+                       'errorName'  => !empty($_SESSION['errorName']) ? $_SESSION['errorName'] : '',
+                       'errorAge'  => !empty($_SESSION['errAge']) ? $_SESSION['errAge'] : '',
+                       'errorDesc'  => !empty($_SESSION['errorDesc']) ? $_SESSION['errorDesc'] : ''
                    ));
            } else {
 
@@ -38,12 +45,62 @@ class controller_cabinet extends Controller {
                    array(
                        'title'  => 'Кабинет',
                        'action' => '/cabinet',
-                       'error'  => 'Данные сохранились'
+                       'error'  => 'Данные сохранились',
+                       'errorName'  => !empty($_SESSION['errorName']) ? $_SESSION['errorName'] : '',
+                       'errorAge'  => !empty($_SESSION['errAge']) ? $_SESSION['errAge'] : '',
+                       'errorDesc'  => !empty($_SESSION['errorDesc']) ? $_SESSION['errorDesc'] : ''
                    ));
            }
         }
     }
 
+    private function checkInput()
+    {
+//        (empty($_POST['name']) || empty($_POST['age']) || empty($_POST['description'])
+        if (strlen($_POST['name'])<4) {
+            $_SESSION['errorName'] = ' Имя не менее 5 символов';
+            $this->view->generate('cabinet_view.twig',
+                array(
+                    'title'  => 'Кабинет',
+                    'action' => '/cabinet',
+                    'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : '',
+                    'errorName'  => !empty($_SESSION['errorName']) ? $_SESSION['errorName'] : '',
+                    'errorAge'  => !empty($_SESSION['errAge']) ? $_SESSION['errAge'] : '',
+                    'errorDesc'  => !empty($_SESSION['errorDesc']) ? $_SESSION['errorDesc'] : ''
+                ));
+        } else {
+            $_SESSION['errorName'] = '';
+        }
+        if (10 > (int) $_POST['age'] && (int) $_POST['age'] > 100) {
+            $_SESSION['errAge'] = ' Возраст должен быть от 10 до 100';
+            $this->view->generate('cabinet_view.twig',
+                array(
+                    'title'  => 'Кабинет',
+                    'action' => '/cabinet',
+                    'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : '',
+                    'errorName'  => !empty($_SESSION['errorName']) ? $_SESSION['errorName'] : '',
+                    'errorAge'  => !empty($_SESSION['errAge']) ? $_SESSION['errAge'] : '',
+                    'errorDesc'  => !empty($_SESSION['errorDesc']) ? $_SESSION['errorDesc'] : ''
+                ));
+        } else {
+            $_SESSION['errAge'] = '';
+        }
+        if (strlen($_POST['description'])<49) {
+            $_SESSION['errorDesc'] = ' Описание не менее 50 символов';
+            $this->view->generate('cabinet_view.twig',
+                array(
+                    'title'  => 'Кабинет',
+                    'action' => '/cabinet',
+                    'error'  => !empty($_SESSION['fileErr']) ? $_SESSION['fileErr'] : '',
+                    'errorName'  => !empty($_SESSION['errorName']) ? $_SESSION['errorName'] : '',
+                    'errorAge'  => !empty($_SESSION['errAge']) ? $_SESSION['errAge'] : '',
+                    'errorDesc'  => !empty($_SESSION['errorDesc']) ? $_SESSION['errorDesc'] : ''
+                ));
+        } else {
+            $_SESSION['errorDesc'] = '';
+        }
+
+    }
     
     
     private function checkSaveImage()

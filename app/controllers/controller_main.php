@@ -12,6 +12,7 @@ class Controller_Main extends Controller
                     'titleFrom' => 'Регистрация',
                     'action'    => "#",
                     'error'     => !empty($_SESSION['err']) ? $_SESSION['err'] : ''
+                    
                 ));
         } else {
             

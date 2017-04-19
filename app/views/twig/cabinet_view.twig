@@ -7,10 +7,10 @@
     <form action="{{ action }}" method="POST" enctype="multipart/form-data" >
         <h3><b>здесь можно дополнить данные о себе</b><br></h3>
 
-        <input type="text" name="name" placeholder="Имя" class="inputForm"><Br>
-        <input type="number" name="age" placeholder="возраст" class="inputForm"><Br>
+        <input type="text" name="name" placeholder="Имя" class="inputForm"> {{ errorName }}<Br>
+        <input type="number" name="age" placeholder="возраст" class="inputForm">{{ errorAge }}<Br>
 
-        <textarea name="description" placeholder="описание" class="inputForm"> </textarea><Br>
+        <textarea name="description" placeholder="описание" class="inputForm"> </textarea> {{ errorDesc }}<Br>
         {{ error  }}<br>
         <input type="file" name="image" placeholder="картинка" class="inputForm"><Br>
         <input type="submit" name="отправить">
