@@ -1,4 +1,5 @@
 <?php
+
 class controller_autorization extends Controller {
 
     public function action_index()

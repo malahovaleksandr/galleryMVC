@@ -131,7 +131,7 @@ class controller_cabinet extends Controller {
             $_SESSION['notFile'] = 'большой размер файла';
             header("Location: /cabinet");
         }
-        $newDir = '../loadPhoto';
+        $newDir = 'loadPhoto';
         if (!file_exists($newDir)) {//проверяем существует ли папка для сохранения файлов. file_exists это функция проверяет существует или нет
             mkdir($newDir, 777);// если нет такой то создаем папку .в () первое значение где создаем, второе это права на папку
         }
