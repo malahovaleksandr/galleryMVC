@@ -7,7 +7,7 @@ define ('SITE_PATH', $sitePath); // путь к корневой папке са
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'loftPHP');
+define('DB_NAME', '');
 $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME;
 define('DSN', $dsn);
 

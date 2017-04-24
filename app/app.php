@@ -14,11 +14,11 @@ $ner= new PHPMailer();
 
 
 $capsule = new Capsule;
-
+// это должно быть в config что это тут делает?
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'loftPHP',
+    'database'  => '',
     'username'  => 'root',
     'password'  => '',
     'charset'   => 'utf8',
